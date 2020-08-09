@@ -11,10 +11,8 @@ import java.util.UUID;
 @Table(name = "prescriptions")
 public class Prescription {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "prescr_id", columnDefinition = "VARCHAR(255)")
-    private UUID prescrId;
+    @GeneratedValue
+    private Long prescrId;
     @ManyToOne
     @JoinColumn(name="patient_id", nullable=false)
     private Patient patient;
@@ -36,11 +34,11 @@ public class Prescription {
     public Prescription() {
     }
 
-    public UUID getPrescrId() {
+    public Long getPrescrId() {
         return prescrId;
     }
 
-    public void setPrescrId(UUID prescrId) {
+    public void setPrescrId(Long prescrId) {
         this.prescrId = prescrId;
     }
 
