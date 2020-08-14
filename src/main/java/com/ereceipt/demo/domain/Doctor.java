@@ -14,30 +14,40 @@ public class Doctor{
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "doctor_id", columnDefinition = "VARCHAR(255)")
     private UUID doctorId;
     private String firstName;
     private String lastName;
     @ManyToOne
-    @JoinColumn(name="hospital_id", nullable=false)
+    @JoinColumn(name="hospital_id",nullable=false)
     private Hospital hospital;
     private String email;
+    @Column(unique=true)
     private String username;
     private String password;
     private String photoId;
+    @Column(columnDefinition = "varchar(30) default 'DOCTOR'", insertable=false)
+    private String role;
     @OneToMany(mappedBy="doctor")
     private Set<Patient> patients = new HashSet<>();
     @OneToMany(mappedBy="doctor")
     private Set<Prescription> prescriptions = new HashSet<>();
 
     public Doctor(String firstName, String lastName, Hospital hospital, String email,
-                  String password, String photoId, String username) {
+                  String password, String username) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.hospital = hospital;
         this.email = email;
         this.password = password;
-        this.photoId = photoId;
+        this.username = username;
+    }
+
+    public Doctor(String firstName, String lastName, String email,
+                  String password, String username) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
         this.username = username;
     }
 
@@ -124,6 +134,14 @@ public class Doctor{
         this.prescriptions = prescriptions;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -138,11 +156,12 @@ public class Doctor{
                 Objects.equals(password, doctor.password) &&
                 Objects.equals(photoId, doctor.photoId) &&
                 Objects.equals(patients, doctor.patients) &&
+                Objects.equals(role, doctor.role) &&
                 Objects.equals(prescriptions, doctor.prescriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctorId, firstName, lastName, hospital, email, username, password, photoId, patients, prescriptions);
+        return Objects.hash(doctorId, firstName, lastName, email, username, hospital, password, photoId, patients, prescriptions);
     }
 }

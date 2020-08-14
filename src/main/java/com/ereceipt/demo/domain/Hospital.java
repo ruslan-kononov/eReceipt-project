@@ -49,6 +49,7 @@ public class Hospital {
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hospital hospital = (Hospital) o;

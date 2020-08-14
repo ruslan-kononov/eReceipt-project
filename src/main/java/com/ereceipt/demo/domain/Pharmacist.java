@@ -12,14 +12,17 @@ public class Pharmacist {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "pharma_id", columnDefinition = "VARCHAR(255)")
+    @Column(name = "pharma_id")
     private UUID pharmaId;
     private String firstName;
     private String lastName;
     private String email;
+    @Column(unique=true)
     private String username;
     private String password;
     private String photoId;
+    @Column(columnDefinition = "varchar(30) default 'PHARMA'", insertable=false)
+    private String role;
 
     public Pharmacist(String firstName, String lastName, String email, String username, String password, String photoId) {
         this.firstName = firstName;
@@ -89,6 +92,14 @@ public class Pharmacist {
         this.photoId = photoId;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,6 +111,7 @@ public class Pharmacist {
                 Objects.equals(email, that.email) &&
                 Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password) &&
+                Objects.equals(role, that.role) &&
                 Objects.equals(photoId, that.photoId);
     }
 
