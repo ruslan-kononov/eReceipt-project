@@ -25,7 +25,7 @@ public class PharmaController {
     }
 
     @GetMapping("")
-    public void getPharmaData(Model model){
+    public void getPharmaPage(Model model){
         UserDetails userDetails =
                 (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Pharmacist pharma = pharmaService.findPharmacistByUsernameAndPassword(userDetails.getUsername(),
