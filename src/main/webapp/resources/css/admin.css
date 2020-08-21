@@ -1,0 +1,22 @@
+.btn-form {
+    border-radius: 1.5em;
+    font-size: 1.5em;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.navbar-brand{
+    font-size: 1.5em;
+}
+
+.is-invalid::placeholder {
+    color: #d9534f;
+    opacity: 1;
+}
+
+.doc-pass + .invalid-feedback{
+    display:none;
+}
+.invalid-feedback + .invalid-feedback{
+    display:none;
+}
