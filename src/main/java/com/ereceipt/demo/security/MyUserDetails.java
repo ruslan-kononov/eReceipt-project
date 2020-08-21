@@ -1,25 +1,28 @@
 package com.ereceipt.demo.security;
 
+import com.ereceipt.demo.domain.User;
+import com.ereceipt.demo.domain.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 public class MyUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
-
     private String username;
     private String password;
-    private List<String> userRoles;
+    private List<UserRole> userRoles;
 
-    public MyUserDetails(String username, String password,List<String> userRoles) {
-        this.username = username;
-        this.password = password;
-        this.userRoles = userRoles;
+    public MyUserDetails(User user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.userRoles = Arrays.asList(user.getRole());
     }
 
     @Override

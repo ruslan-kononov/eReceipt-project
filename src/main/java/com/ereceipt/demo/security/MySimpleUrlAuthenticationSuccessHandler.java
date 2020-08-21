@@ -4,6 +4,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
@@ -53,6 +55,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         Map<String, String> roleTargetUrlMap = new HashMap<>();
         roleTargetUrlMap.put("DOCTOR", "/doctor");
         roleTargetUrlMap.put("PHARMA", "/pharma");
+        roleTargetUrlMap.put("ADMIN", "/admin");
 
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
