@@ -31,7 +31,7 @@ public class DoctorController {
     }
 
     @GetMapping("")
-    public String getAdminPage(Model model){
+    public String getDoctorPage(Model model){
         UserDetails userDetails =
                 (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Doctor doctor = doctorService.findDoctorByUsernameAndPassword(userDetails.getUsername(),
