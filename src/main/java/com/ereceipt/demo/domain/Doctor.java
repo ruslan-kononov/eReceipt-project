@@ -1,105 +1,35 @@
 package com.ereceipt.demo.domain;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "user_id")
 @Table(name = "doctors")
-public class Doctor{
-    @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID doctorId;
-    private String firstName;
-    private String lastName;
+public class Doctor extends User{
+
     @ManyToOne
-    @JoinColumn(name="hospital_id",nullable=false)
+    @JoinColumn(name="hospital_id")
     private Hospital hospital;
-    private String email;
-    @Column(unique=true)
-    private String username;
-    private String password;
-    private String photoId;
-    @Column(columnDefinition = "varchar(30) default 'DOCTOR'", insertable=false)
-    private String role;
     @OneToMany(mappedBy="doctor")
     private Set<Patient> patients = new HashSet<>();
     @OneToMany(mappedBy="doctor")
     private Set<Prescription> prescriptions = new HashSet<>();
 
-    public Doctor(String firstName, String lastName, Hospital hospital, String email,
-                  String password, String username) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Doctor(String username, String password, String firstName, String lastName,
+                  String email, UserRole role, String photoId, Hospital hospital) {
+        super(username, password, firstName, lastName, email, role, photoId);
         this.hospital = hospital;
-        this.email = email;
-        this.password = password;
-        this.username = username;
     }
 
-    public Doctor(String firstName, String lastName, String email,
-                  String password, String username) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.username = username;
+    public Doctor(String username, String password, String firstName, String lastName,
+                  String email, UserRole role, String photoId) {
+        super(username, password, firstName, lastName, email, role, photoId);
     }
 
     public Doctor() {
-    }
-
-    public UUID getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(UUID doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhotoId() {
-        return photoId;
-    }
-
-    public void setPhotoId(String photoId) {
-        this.photoId = photoId;
     }
 
     public Hospital getHospital() {
@@ -118,14 +48,6 @@ public class Doctor{
         this.patients = patients;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public Set<Prescription> getPrescriptions() {
         return prescriptions;
     }
@@ -134,34 +56,18 @@ public class Doctor{
         this.prescriptions = prescriptions;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return Objects.equals(doctorId, doctor.doctorId) &&
-                Objects.equals(firstName, doctor.firstName) &&
-                Objects.equals(lastName, doctor.lastName) &&
-                Objects.equals(hospital, doctor.hospital) &&
-                Objects.equals(email, doctor.email) &&
-                Objects.equals(username, doctor.username) &&
-                Objects.equals(password, doctor.password) &&
-                Objects.equals(photoId, doctor.photoId) &&
+        return Objects.equals(hospital, doctor.hospital) &&
                 Objects.equals(patients, doctor.patients) &&
-                Objects.equals(role, doctor.role) &&
                 Objects.equals(prescriptions, doctor.prescriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctorId, firstName, lastName, email, username, hospital, password, photoId, patients, prescriptions);
+        return Objects.hash(hospital, patients, prescriptions);
     }
 }

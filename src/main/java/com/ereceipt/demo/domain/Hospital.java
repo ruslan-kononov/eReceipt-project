@@ -2,7 +2,6 @@ package com.ereceipt.demo.domain;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -45,21 +44,5 @@ public class Hospital {
 
     public void setDoctors(Set<Doctor> doctors) {
         this.doctors = doctors;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Hospital hospital = (Hospital) o;
-        return Objects.equals(hospitalId, hospital.hospitalId) &&
-                Objects.equals(name, hospital.name) &&
-                Objects.equals(doctors, hospital.doctors);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(hospitalId, name, doctors);
     }
 }

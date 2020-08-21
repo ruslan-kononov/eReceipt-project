@@ -1,35 +1,37 @@
 package com.ereceipt.demo.domain;
 
-
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
 @Entity
 @Table(name = "patients")
-public class Patient {
+public class Patient{
+
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "patient_id", columnDefinition = "VARCHAR(255)")
+    @Column(name = "patient_id")
+    @Type(type="org.hibernate.type.UUIDCharType")
     private UUID patientId;
     private String firstName;
     private String lastName;
-    private int age;
-    @ManyToOne
-    @JoinColumn(name="doctor_id", nullable=false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthdate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
     private Doctor doctor;
     @OneToMany(mappedBy="patient")
     private Set<Prescription> prescriptions = new HashSet<>();
 
-    public Patient(String firstName, String lastName, int age, Doctor doctor) {
+    public Patient(String firstName, String lastName, String birthdate,Doctor doctor) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.birthdate = LocalDate.parse(birthdate);
         this.doctor = doctor;
     }
 
@@ -60,12 +62,12 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public Doctor getDoctor() {
@@ -82,22 +84,5 @@ public class Patient {
 
     public void setPrescriptions(Set<Prescription> prescriptions) {
         this.prescriptions = prescriptions;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Patient patient = (Patient) o;
-        return age == patient.age &&
-                Objects.equals(patientId, patient.patientId) &&
-                Objects.equals(firstName, patient.firstName) &&
-                Objects.equals(lastName, patient.lastName) &&
-                Objects.equals(doctor, patient.doctor);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(patientId, firstName, lastName, age, doctor);
     }
 }
