@@ -89,11 +89,11 @@ function validatePrescriptionCheck() {
                         success: function(data) {
                             if(data=='success'){
                                 var content = '';
-                                content+= '<h3>The prescription can be issued.</h3>'
+                                content+= '<h3>The medicine can be issued.</h3>'
                                 $('.table-prescription').html(content);
                             }else{
                                 var content = '';
-                                content+= '<h3>The prescription has been already issued.</h3>'
+                                content+= '<h3>The medicine has been already issued.</h3>'
                                 $('.table-prescription').html(content);
                             }
                         }
