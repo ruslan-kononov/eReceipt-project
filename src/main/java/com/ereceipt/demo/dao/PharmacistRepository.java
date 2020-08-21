@@ -9,6 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface PharmacistRepository extends JpaRepository<Pharmacist, UUID> {
-    public Optional<Pharmacist> findPharmacistByUsername(String username);
     public Pharmacist findPharmacistByUsernameAndPassword(String username, String password);
 }
