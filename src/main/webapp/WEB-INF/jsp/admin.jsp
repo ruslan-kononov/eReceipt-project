@@ -34,7 +34,7 @@
         <div class="col-md-12">
             <h3 id="add_doctor">Add doctor</h3>
             <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 p-3 shadow-sm h-md-250 position-relative form-style">
-                <form:form class="needs-validation doc-form" action="/admin/addDoctor" modelAttribute="doctor" method="post">
+                <form:form class="needs-validation doc-form" action="/admin/addDoctor" modelAttribute="doctor" method="post" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="doc-first-name">First name</label>
@@ -87,7 +87,7 @@
                         <div class="col-md-4 mb-3">
                             <label>Choose image</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="doc-img">
+                                <input type="file" name="image-file" class="custom-file-input" id="doc-img">
                                 <label class="custom-file-label">Choose file...</label>
                             </div>
                         </div>
