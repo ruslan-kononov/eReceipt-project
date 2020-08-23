@@ -31,7 +31,7 @@
         <div class="col-md-12">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col-auto d-none d-md-block">
-<%--                    <img src="img/b1.jpg" alt="">--%>
+                    <img src="<c:url value="doctor/getPhoto/${doctor.photoId}" />" alt="" class="img-fluid">
                 </div>
                 <div class="col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-primary">
