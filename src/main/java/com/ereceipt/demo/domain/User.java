@@ -24,10 +24,10 @@ public abstract class User {
     protected String email;
     @Enumerated(EnumType.STRING)
     protected UserRole role;
-    protected String photoId;
+    protected UUID photoId;
 
     public User(String username, String password, String firstName, String lastName,
-                String email, UserRole role, String photoId) {
+                String email, UserRole role, UUID photoId) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -68,11 +68,11 @@ public abstract class User {
         this.email = email;
     }
 
-    public String getPhotoId() {
+    public UUID getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(String photoId) {
+    public void setPhotoId(UUID photoId) {
         this.photoId = photoId;
     }
 

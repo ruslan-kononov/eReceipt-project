@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "user_id")
@@ -14,7 +15,7 @@ public class Admin extends User{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdAt;
 
-    public Admin(String username, String password, String firstName, String lastName, String email, UserRole role, String photoId, LocalDate createdAt) {
+    public Admin(String username, String password, String firstName, String lastName, String email, UserRole role, UUID photoId, LocalDate createdAt) {
         super(username, password, firstName, lastName, email, role, photoId);
         this.createdAt = createdAt;
     }

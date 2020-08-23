@@ -1,8 +1,10 @@
 package com.ereceipt.demo.domain;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "images")
@@ -10,8 +12,9 @@ public class FileMultipart {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "image_id", columnDefinition = "VARCHAR(255)")
-    private String imageId;
+    @Type(type="org.hibernate.type.UUIDCharType")
+    @Column(name = "image_id")
+    private UUID imageId;
     private String fileName;
     private String fileType;
     @Lob
@@ -26,11 +29,11 @@ public class FileMultipart {
     public FileMultipart() {
     }
 
-    public String getImageId() {
+    public UUID getImageId() {
         return imageId;
     }
 
-    public void setImageId(String id) {
+    public void setImageId(UUID id) {
         this.imageId = id;
     }
 

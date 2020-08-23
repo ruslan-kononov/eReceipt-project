@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "user_id")
@@ -19,13 +20,13 @@ public class Doctor extends User{
     private Set<Prescription> prescriptions = new HashSet<>();
 
     public Doctor(String username, String password, String firstName, String lastName,
-                  String email, UserRole role, String photoId, Hospital hospital) {
+                  String email, UserRole role, UUID photoId, Hospital hospital) {
         super(username, password, firstName, lastName, email, role, photoId);
         this.hospital = hospital;
     }
 
     public Doctor(String username, String password, String firstName, String lastName,
-                  String email, UserRole role, String photoId) {
+                  String email, UserRole role, UUID photoId) {
         super(username, password, firstName, lastName, email, role, photoId);
     }
 
