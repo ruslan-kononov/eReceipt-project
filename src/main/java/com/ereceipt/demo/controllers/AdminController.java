@@ -60,7 +60,11 @@ public class AdminController {
     }
 
     @PostMapping("/addPharma")
-    public RedirectView addNewPharmacist(@ModelAttribute("pharma") Pharmacist pharmacist,Model model){
+    public RedirectView addNewPharmacist(@RequestParam(name = "image-file") MultipartFile file,
+                                         @ModelAttribute("pharma") Pharmacist pharmacist,Model model) throws IOException {
+
+        FileMultipart fileMultipart = fileMultipartService.storeFile(file);
+        pharmacist.setPhotoId(fileMultipart.getImageId());
         pharmaService.addNewPharmacist(pharmacist);
         model.addAttribute("patient",new Patient());
         model.addAttribute("hospital", new Hospital());
