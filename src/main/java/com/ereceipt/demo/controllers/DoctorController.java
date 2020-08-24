@@ -1,8 +1,6 @@
 package com.ereceipt.demo.controllers;
 
-import com.ereceipt.demo.domain.Doctor;
-import com.ereceipt.demo.domain.FileMultipart;
-import com.ereceipt.demo.domain.Prescription;
+import com.ereceipt.demo.domain.*;
 import com.ereceipt.demo.service.DoctorService;
 import com.ereceipt.demo.service.FileMultipartService;
 import com.ereceipt.demo.service.PatientService;
@@ -14,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -61,9 +60,30 @@ public class DoctorController {
         IOUtils.copy(inputStream, response.getOutputStream());
     }
 
+    @GetMapping("/settings/{username}")
+    public String getSettingsPage(@PathVariable String username, Model model) throws IOException {
+        model.addAttribute("username",username);
+        model.addAttribute("userRole","doctor");
+        return "settings";
+    }
+
     @PostMapping("/addPrescription")
     public RedirectView addNewDoctor(@ModelAttribute("prescription") Prescription prescription, Model model){
         doctorService.addNewPrescription(prescription);
         return new RedirectView("/doctor",true);
     }
+
+    @PostMapping("/updatePhoto")
+    public RedirectView updateProfileDoctor(@RequestParam(name = "image-file") MultipartFile file,
+                                            @RequestParam(name = "username") String username) throws IOException {
+        Doctor doctor = doctorService.findDoctorByUsername(username).get();
+        if(doctor.getPhotoId()!=null){
+            fileMultipartService.deleteFile(doctor.getPhotoId());
+        }
+        FileMultipart fileMultipart = fileMultipartService.storeFile(file);
+        doctor.setPhotoId(fileMultipart.getImageId());
+        doctorService.saveNewDoctor(doctor);
+        return new RedirectView("/doctor",true);
+    }
+
 }

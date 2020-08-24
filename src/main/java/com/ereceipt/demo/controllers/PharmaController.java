@@ -1,5 +1,6 @@
 package com.ereceipt.demo.controllers;
 
+import com.ereceipt.demo.domain.Doctor;
 import com.ereceipt.demo.domain.FileMultipart;
 import com.ereceipt.demo.domain.Pharmacist;
 import com.ereceipt.demo.domain.Prescription;
@@ -7,7 +8,6 @@ import com.ereceipt.demo.dto.PrescriptionInfo;
 import com.ereceipt.demo.dto.PrescriptionNumber;
 import com.ereceipt.demo.service.FileMultipartService;
 import com.ereceipt.demo.service.PharmaService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
@@ -53,6 +55,13 @@ public class PharmaController {
         IOUtils.copy(inputStream, response.getOutputStream());
     }
 
+    @GetMapping("/settings/{username}")
+    public String getPharmaSettingsPage(@PathVariable String username, Model model){
+        model.addAttribute("username",username);
+        model.addAttribute("userRole","pharma");
+        return "settings";
+    }
+
     @PostMapping(path = "/checkPrescription",consumes = "application/json", produces = "application/json")
     public @ResponseBody String checkPrescription(@RequestBody PrescriptionNumber number){
         Prescription prescription = pharmaService.findPrescriptionByItsCode(number.prescriptionNumber);
@@ -80,5 +89,18 @@ public class PharmaController {
         }else{
             return new Gson().toJson("already issued");
         }
+    }
+
+    @PostMapping("/updatePhoto")
+    public RedirectView updateProfileImage(@RequestParam(name = "image-file") MultipartFile file,
+                                            @RequestParam(name = "username") String username) throws IOException {
+        Pharmacist pharmacist = pharmaService.findPharmacistByUsername(username);
+        if(pharmacist.getPhotoId()!=null){
+            fileMultipartService.deleteFile(pharmacist.getPhotoId());
+        }
+        FileMultipart fileMultipart = fileMultipartService.storeFile(file);
+        pharmacist.setPhotoId(fileMultipart.getImageId());
+        pharmaService.addNewPharmacist(pharmacist);
+        return new RedirectView("/pharma",true);
     }
 }
