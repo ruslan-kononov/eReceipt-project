@@ -20,6 +20,7 @@
             Company name</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="#add-prescription">Check prescription</a>
+            <a class="p-2 text-dark" href="pharma/settings/${pharma.username}">Settings</a>
         </nav>
         <form:form class="form-inline" action="${pageContext.request.contextPath}/logout" method="post">
             <button class="btn btn-outline-primary my-2 my-sm-0 btn-form" type="submit">Logout</button>
@@ -31,7 +32,8 @@
         <div class="col-md-12">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col-auto d-none d-md-block">
-                    <img src="<c:url value="pharma/getPhoto/${pharma.photoId}" />" alt="" class="img-fluid">
+                    <img src="<c:url value="pharma/getPhoto/${pharma.photoId}" />" alt="" class="img-fluid"
+                         style="max-height: 450px">
                 </div>
                 <div class="col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-primary">
@@ -61,6 +63,7 @@
         </div>
     </div>
 </div>
+<jsp:include page="footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"/>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
