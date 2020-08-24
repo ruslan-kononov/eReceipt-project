@@ -24,6 +24,10 @@ public class PharmaService {
         return pharmacistRepository.findPharmacistByUsernameAndPassword(username,password);
     }
 
+    public Pharmacist findPharmacistByUsername(String username){
+        return pharmacistRepository.findByUsername(username);
+    }
+
     public Prescription findPrescriptionByItsCode(String code){
         return prescriptionRepository.findByPrescrCode(code);
     }
