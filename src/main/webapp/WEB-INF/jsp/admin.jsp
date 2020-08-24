@@ -20,7 +20,7 @@
             e-Prescription</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="#add_doctor">Add doctor</a>
-            <a class="p-2 text-dark" href="#add_pharma">Add pharmacist</a>
+            <a class="p-2 text-dark" href="#add-pharma">Add pharmacist</a>
             <a class="p-2 text-dark" href="#add_hospital">Add hospital</a>
             <a class="p-2 text-dark" href="#add_patient">Add patient</a>
         </nav>
@@ -89,6 +89,7 @@
                             <div class="custom-file">
                                 <input type="file" name="image-file" class="custom-file-input" id="doc-img">
                                 <label class="custom-file-label">Choose file...</label>
+                                <div class="invalid-feedback">The file size is too large</div>
                             </div>
                         </div>
                         <form:input type="hidden" path="role" value="DOCTOR"/>
@@ -98,7 +99,7 @@
             </div>
 
 
-            <h3 id="add_pharma">Add pharmacist</h3>
+            <h3 id="add-pharma">Add pharmacist</h3>
             <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 p-3 shadow-sm h-md-250 position-relative form-style">
                 <form:form class="needs-validation pharma-form" action="/admin/addPharma" modelAttribute="pharma" method="post" enctype="multipart/form-data">
                     <div class="form-row">
@@ -131,6 +132,7 @@
                             <div class="custom-file">
                                 <input type="file" name="image-file" class="custom-file-input" id="pharma-img">
                                 <label class="custom-file-label">Choose file...</label>
+                                <div class="invalid-feedback">The file size is too large</div>
                             </div>
                         </div>
                     </div>
