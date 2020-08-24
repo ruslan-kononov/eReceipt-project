@@ -66,7 +66,7 @@ function validateRegistrationDoctor() {
        $('#doc-pass-1, #doc-pass-2').addClass("is-invalid");
        $(".doc-pass + .invalid-feedback").show();
        return false;
-   }else{
+   }else {
        return true;
    }
 }
@@ -77,8 +77,9 @@ function validateRegistrationPharma() {
     var email = $("#pharma-email");
     var username = $("#pharma-username");
     var password = $(".pharma-pass");
+    var img = $("#pharma-img");
 
-    var arr = [firstName, lastName, email, password, username, password];
+    var arr = [firstName, lastName, email, password, username, password, img];
 
     arr.forEach(el=>el.removeClass("is-invalid"))
     $(".pharma-pass + .invalid-feedback").hide()
@@ -145,5 +146,3 @@ function validateRegistrationPatient() {
         return true;
     }
 }
-
-$('#patient-date').data("DateTimePicker").FUNCTION()
