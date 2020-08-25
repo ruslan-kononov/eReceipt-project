@@ -2,7 +2,6 @@ package com.ereceipt.demo.service;
 
 import com.ereceipt.demo.dao.FileMultipartRepository;
 import com.ereceipt.demo.domain.FileMultipart;
-import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
