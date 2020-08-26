@@ -23,7 +23,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.info("Get UserDetails by username '"+username+"'");
+        logger.info("Get UserDetails by username {}",username);
         Optional<User> user = userRepository.findByUsername(username);
         user.orElseThrow(() -> new UsernameNotFoundException("There is no user with '" + username + "' username"));
         return new MyUserDetails(user.get());

@@ -26,12 +26,12 @@ public class DoctorService {
     }
 
     public Optional<Doctor> findDoctorByUsername(String username){
-        logger.info("Get doctor by username '"+username+"'");
+        logger.info("Get doctor by username {}",username);
         return doctorRepository.findDoctorByUsername(username);
     }
 
     public Doctor findDoctorByUsernameAndPassword(String username,String password){
-        logger.info("Get doctor by username '"+username+"' and password '"+password+"'");
+        logger.info("Get doctor by username {} and password {}",password,username);
         return doctorRepository.findDoctorByUsernameAndPassword(username,password);
     }
 
@@ -41,12 +41,12 @@ public class DoctorService {
     }
 
     public Doctor saveNewDoctor(Doctor doctor){
-        logger.info("Add new doctor {} :"+doctor);
+        logger.info("Add new doctor {}",doctor);
         return doctorRepository.save(doctor);
     }
 
     public Prescription addNewPrescription(Prescription prescription){
-        logger.info("Add new prescription {} :"+prescription);
+        logger.info("Add new prescription {}",prescription);
         return prescriptionRepository.save(prescription);
     }
 

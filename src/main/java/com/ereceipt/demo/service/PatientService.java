@@ -20,7 +20,7 @@ public class PatientService {
     }
 
     public Patient addNewPatient(Patient patient){
-        logger.info("Add new patient {} :"+patient);
+        logger.info("Add new patient {}",patient);
         return patientRepository.save(patient);
     }
 

@@ -25,32 +25,32 @@ public class PharmaService {
     }
 
     public Pharmacist findPharmacistByUsernameAndPassword(String username, String password){
-        logger.info("Get pharmacist by username '"+username+"' and password '"+password+"'");
+        logger.info("Get pharmacist by username {} and password {}",username,password);
         return pharmacistRepository.findPharmacistByUsernameAndPassword(username,password);
     }
 
     public Pharmacist findPharmacistByUsername(String username){
-        logger.info("Get pharmacist by username '"+username+"'");
+        logger.info("Get pharmacist by username {}",username);
         return pharmacistRepository.findByUsername(username);
     }
 
     public Prescription findPrescriptionByItsCode(String code){
-        logger.info("Get prescription by code '"+code+"'");
+        logger.info("Get prescription by code {}",code);
         return prescriptionRepository.findByPrescrCode(code);
     }
 
     public Prescription findPrescriptionById(Long id){
-        logger.info("Get prescription by id '"+id+"'");
+        logger.info("Get prescription by id {}",id);
         return prescriptionRepository.findByPrescrId(id);
     }
 
     public Prescription savePrescription(Prescription prescription){
-        logger.info("Add new prescription {} :"+prescription);
+        logger.info("Add new prescription {}",prescription);
         return prescriptionRepository.save(prescription);
     }
 
     public Pharmacist addNewPharmacist(Pharmacist pharmacist){
-        logger.info("Add new pharmacist {} :"+pharmacist);
+        logger.info("Add new pharmacist {}",pharmacist);
         return pharmacistRepository.save(pharmacist);
     }
 }

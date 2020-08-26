@@ -22,7 +22,7 @@ public class HospitalService {
     }
 
     public Hospital addNewHospital(Hospital hospital){
-        logger.info("Add new hospital {} :"+hospital);
+        logger.info("Add new hospital {}",hospital);
         return hospitalRepository.save(hospital);
     }
 }
