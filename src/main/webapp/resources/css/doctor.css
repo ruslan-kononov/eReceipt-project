@@ -8,3 +8,17 @@
 .navbar-brand{
     font-size: 1.5em;
 }
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    color: #0275d8;
+    text-decoration:underline;
+}
+
+input[type="radio"] + label:hover {
+    color: #5bc0de;
+    cursor:pointer;
+}
