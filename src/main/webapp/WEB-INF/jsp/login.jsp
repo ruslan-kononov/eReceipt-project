@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html lang="en">
 <head>
     <title>e-Prescription</title>
@@ -14,57 +16,42 @@
 <body>
 <header>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom box-shadow text-light">
-        <h5 class="my-0 mr-md-auto font-weight-normal">e-Prescription</h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><spring:message code="name"/></h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-light" href="#log-form">Log in</a>
+            <input type="radio" name="languages" value="en" id="lang-en">
+            <label for="lang-en"><spring:message code="lang.eng"/></label>
+            <input type="radio" name="languages" value="uk" id="lang-uk">
+            <label for="lang-uk"><spring:message code="lang.uk"/></label>
+            <a class="p-2 text-light" href="#log-form"><spring:message code="login.log"/></a>
         </nav>
     </div>
 </header>
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light banner">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 font-weight-normal">e-Prescription</h1>
-        <p class="lead font-weight-normal">Centralized paperless system for issuing and handling medical prescriptions.</p>
-        <a class="btn btn-outline-primary btn-form" href="#log-form">Log in</a>
+        <h1 class="display-4 font-weight-normal"><spring:message code="name"/></h1>
+        <p class="lead font-weight-normal"><spring:message code="login.text"/></p>
+        <a class="btn btn-outline-primary btn-form" href="#log-form"><spring:message code="login.log"/></a>
     </div>
 </div>
 
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3" id="log-form">
     <div class="bg-dark mr-md-3 pt-1 px-3 pt-md-3 px-md-5 text-center text-white overflow-hidden">
         <div class="my-3 py-2">
-            <h3 class="display-5">Log In</h3>
-            <h5 class="display-5">Choose your role</h5>
+            <h3 class="display-5"><spring:message code="login.log-phrase"/></h3>
             <form name="f" action="<c:url value='/login'/>" method="post">
-                <div class="wrapper">
-                    <div class="toggle_radio">
-                        <input type="radio" checked class="toggle_option" id="first_toggle" name="toggle_option">
-                        <input type="radio" class="toggle_option" id="second_toggle" name="toggle_option">
-                        <input type="radio" class="toggle_option" id="third_toggle" name="toggle_option">
-                        <label for="first_toggle">
-                            <p>Doctor</p>
-                        </label>
-                        <label for="second_toggle">
-                            <p>Pharmacist</p>
-                        </label>
-                        <label for="third_toggle">
-                            <p>Support</p>
-                        </label>
-                        <div class="toggle_option_slider">
-                        </div>
-                    </div>
-                </div>
                 <div class="d-flex align-items-center flex-column">
                     <c:if test="${param.error ne null}">
                         <div class="alert alert-error">
-                            Invalid username and password.
+                            <spring:message code="login.invalid"/>
                         </div>
                     </c:if>
                     <div class="p-1 p-md-2 m-md-1 col-sm-4">
-                        <input type="text" class="form-control inputs"  name="username" placeholder="Username">
+                        <input type="text" class="form-control inputs"  name="username" placeholder="<spring:message code="login.username"/>">
                     </div>
                     <div class="p-1 p-md-2 m-md-1 col-sm-4">
-                        <input type="password" class="form-control inputs" name="password" placeholder="Password">
+                        <input type="password" class="form-control inputs" name="password" placeholder="<spring:message code="login.pass"/>">
                     </div>
-                    <button type="submit" class="btn btn-outline-primary btn-form" style="padding-top: 5px">Log in</button>
+                    <button type="submit" class="btn btn-outline-primary btn-form" style="padding-top: 5px"><spring:message code="login.log"/></button>
                 </div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
@@ -132,5 +119,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+<script src="<c:url value="/resources/js/login.js" />"></script>
 </body>
 </html>

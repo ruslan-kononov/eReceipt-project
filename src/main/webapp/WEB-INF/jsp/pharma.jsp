@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Pharma</title>
@@ -17,13 +18,17 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal">
             <img src="/resources/img/dark-logo.png" width="40" height="50">
-            Company name</h5>
+            <spring:message code="name"/></h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#add-prescription">Check prescription</a>
-            <a class="p-2 text-dark" href="pharma/settings/${pharma.username}">Settings</a>
+            <a class="p-2 text-dark" href="#add-prescription"><spring:message code="pharma-check"/></a>
+            <a class="p-2 text-dark" href="pharma/settings/${pharma.username}"><spring:message code="doc-settngs"/></a>
+            <input type="radio" name="languages" value="en" id="lang-en">
+            <label for="lang-en"><spring:message code="lang.eng"/></label>
+            <input type="radio" name="languages" value="uk" id="lang-uk">
+            <label for="lang-uk"><spring:message code="lang.uk"/></label>
         </nav>
         <form:form class="form-inline" action="${pageContext.request.contextPath}/logout" method="post">
-            <button class="btn btn-outline-primary my-2 my-sm-0 btn-form" type="submit">Logout</button>
+            <button class="btn btn-outline-primary my-2 my-sm-0 btn-form" type="submit"><spring:message code="logout"/></button>
         </form:form>
     </div>
 </header>
@@ -37,25 +42,25 @@
                 </div>
                 <div class="col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-primary">
-                        <h4>Pharmacist</h4>
+                        <h4><spring:message code="pharma-name"/></h4>
                     </strong>
                     <h3 class="mb-0">${pharma.firstName} ${pharma.lastName}</h3>
                     <div class="mb-3 text-muted">${pharma.email}</div>
                 </div>
             </div>
 
-            <h3 id="add-prescription">Check prescription</h3>
+            <h3 id="add-prescription"><spring:message code="pharma-check"/></h3>
             <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 p-3 shadow-sm h-md-250 position-relative form-style">
                 <form class="prescription-form">
                     <div class="form-row">
                         <div class="col-6 mb-3">
-                            <label>Enter prescription code</label>
-                            <input type="text" class="form-control prescrCode" value="" placeholder="Enter prescription code">
-                            <div class="invalid-feedback">The field is empty</div>
-                            <div class="invalid-feedback">The code must be 8 characters long</div>
+                            <label><spring:message code="pharma-enter-code"/></label>
+                            <input type="text" class="form-control prescrCode" value="" placeholder="<spring:message code="pharma-enter-code"/>">
+                            <div class="invalid-feedback"><spring:message code="pharma-code-warn1"/></div>
+                            <div class="invalid-feedback"><spring:message code="pharma-code-warn2"/></div>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary btn-form btn-check-prescription" type="button">Check</button>
+                    <button class="btn btn-outline-primary btn-form btn-check-prescription" type="button"><spring:message code="pharma-btn-check"/></button>
                 </form>
                 <div class="table-prescription">
                 </div>

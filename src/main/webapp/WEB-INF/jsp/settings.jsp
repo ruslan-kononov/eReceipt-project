@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Doctor: Settings</title>
@@ -21,43 +22,61 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
     <h5 class="my-0 mr-md-auto font-weight-normal">
         <img src="/resources/img/dark-logo.png" width="40" height="50">
-        Company name</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="<c:url value="/" />">Home</a>
-        <a class="p-2 text-dark" href="#add-prescription">Make prescription</a>
-        <a class="p-2 text-dark" href="#add-prescription">Settings</a>
-    </nav>
+        <spring:message code="name"/></h5>
+    <c:choose>
+        <c:when test="${userRole=='doctor'}">
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="${pageContext.request.contextPath}/doctor"><spring:message code="home"/></a>
+                <a class="p-2 text-dark" href="${pageContext.request.contextPath}/doctor#add-prescription"><spring:message code="doc-make-precr"/></a>
+                <a class="p-2 text-dark" href="${pageContext.request.contextPath}/doctor/settings/${doctor.username}"><spring:message code="doc-settngs"/></a>
+                <input type="radio" name="languages" value="en">
+                <label><spring:message code="lang.eng"/></label>
+                <input type="radio" name="languages" value="uk">
+                <label><spring:message code="lang.uk"/></label>
+            </nav>
+        </c:when>
+        <c:otherwise>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="${pageContext.request.contextPath}/pharma"><spring:message code="home"/></a>
+                <a class="p-2 text-dark" href="${pageContext.request.contextPath}/pharma/settings/${pharma.username}"><spring:message code="doc-settngs"/></a>
+                <input type="radio" name="languages" value="en">
+                <label><spring:message code="lang.eng"/></label>
+                <input type="radio" name="languages" value="uk">
+                <label><spring:message code="lang.uk"/></label>
+            </nav>
+        </c:otherwise>
+    </c:choose>
     <form:form class="form-inline" action="${pageContext.request.contextPath}/logout" method="post">
-        <button class="btn btn-outline-primary my-2 my-sm-0 btn-form" type="submit">Logout</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0 btn-form" type="submit"><spring:message code="logout"/></button>
     </form:form>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 id="add-prescription">Update profile photo</h3>
+            <h3 id="add-prescription"><spring:message code="set-update"/></h3>
             <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 p-3 shadow-sm h-md-250 position-relative form-style">
                 <c:choose>
                     <c:when test="${userRole=='doctor'}">
-                        <c:set var = "link" scope = "session" value = "${'/doctor/updatePhoto'}"/>
+                        <c:set var = "link2" scope = "session" value = "${'/doctor/updatePhoto'}"/>
                     </c:when>
                     <c:otherwise>
-                        <c:set var = "link" scope = "session" value = "${'/pharma/updatePhoto'}"/>
+                        <c:set var = "link2" scope = "session" value = "${'/pharma/updatePhoto'}"/>
                     </c:otherwise>
                 </c:choose>
-                <form class="new-photo-form" action="${link}" method="post" enctype="multipart/form-data">
+                <form class="new-photo-form" action="${link2}" method="post" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="col-md-8 mb-3">
-                            <label>Choose image</label>
+                            <label><spring:message code="set-choose-img"/></label>
                             <div class="custom-file">
                                 <input type="file" name="image-file" class="custom-file-input" required>
-                                <label class="custom-file-label">Choose file...</label>
-                                <div class="invalid-feedback">The file size is too large</div>
+                                <label class="custom-file-label"><spring:message code="set-choose-file"/></label>
+                                <div class="invalid-feedback"><spring:message code="set-choose-file-warn"/></div>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" name="username" value="${username}" />
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                    <button class="btn btn-outline-primary btn-form add-photo mt-3" type="Submit">Update</button>
+                    <button class="btn btn-outline-primary btn-form add-photo mt-3" type="Submit"><spring:message code="set-update-btn"/></button>
                 </form>
                 <div class="table-prescription">
                 </div>
