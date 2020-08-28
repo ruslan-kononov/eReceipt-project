@@ -1,6 +1,5 @@
 package com.ereceipt.demo.controllers;
 
-import com.ereceipt.demo.domain.Doctor;
 import com.ereceipt.demo.domain.FileMultipart;
 import com.ereceipt.demo.domain.Pharmacist;
 import com.ereceipt.demo.domain.Prescription;
