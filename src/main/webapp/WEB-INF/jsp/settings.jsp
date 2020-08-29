@@ -29,20 +29,20 @@
                 <a class="p-2 text-dark" href="${pageContext.request.contextPath}/doctor"><spring:message code="home"/></a>
                 <a class="p-2 text-dark" href="${pageContext.request.contextPath}/doctor#add-prescription"><spring:message code="doc-make-precr"/></a>
                 <a class="p-2 text-dark" href="${pageContext.request.contextPath}/doctor/settings/${doctor.username}"><spring:message code="doc-settngs"/></a>
-                <input type="radio" name="languages" value="en">
-                <label><spring:message code="lang.eng"/></label>
-                <input type="radio" name="languages" value="uk">
-                <label><spring:message code="lang.uk"/></label>
+                <input type="radio" name="languages" value="en" id="lang-en-1">
+                <label for="lang-en-1"><spring:message code="lang.eng"/></label>
+                <input type="radio" name="languages" value="uk" id="lang-uk-1">
+                <label for="lang-uk-1"><spring:message code="lang.uk"/></label>
             </nav>
         </c:when>
         <c:otherwise>
             <nav class="my-2 my-md-0 mr-md-3">
                 <a class="p-2 text-dark" href="${pageContext.request.contextPath}/pharma"><spring:message code="home"/></a>
                 <a class="p-2 text-dark" href="${pageContext.request.contextPath}/pharma/settings/${pharma.username}"><spring:message code="doc-settngs"/></a>
-                <input type="radio" name="languages" value="en">
-                <label><spring:message code="lang.eng"/></label>
-                <input type="radio" name="languages" value="uk">
-                <label><spring:message code="lang.uk"/></label>
+                <input type="radio" name="languages" value="en" id="lang-en-2">
+                <label for="lang-en-2"><spring:message code="lang.eng"/></label>
+                <input type="radio" name="languages" value="uk" id="lang-uk-2">
+                <label for="lang-uk-2"><spring:message code="lang.uk"/></label>
             </nav>
         </c:otherwise>
     </c:choose>
@@ -88,5 +88,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="<c:url value="/resources/js/settings.js" />"></script>
+<script src="<c:url value="/resources/js/lang-change.js" />"></script>
 </body>
 </html>

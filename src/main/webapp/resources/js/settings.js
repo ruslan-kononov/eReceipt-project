@@ -12,9 +12,3 @@ $(".custom-file-input").on('change',function(){
     var fileName = filePath[filePath.length-1];
     $(this).next('.custom-file-label').html(fileName);
 });
-
-$(document).ready(function() {
-    $("input[name='languages']").change(function(){
-        window.location.replace('?lang='+$(this).val());
-    });
-});
