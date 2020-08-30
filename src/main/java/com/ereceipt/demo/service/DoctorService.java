@@ -49,6 +49,4 @@ public class DoctorService {
         logger.info("Add new prescription {}",prescription);
         return prescriptionRepository.save(prescription);
     }
-
-
 }

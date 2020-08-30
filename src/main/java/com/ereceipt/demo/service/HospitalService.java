@@ -11,8 +11,13 @@ import java.util.List;
 
 @Service
 public class HospitalService {
+
+    private HospitalRepository hospitalRepository;
+
     @Autowired
-    HospitalRepository hospitalRepository;
+    public HospitalService(HospitalRepository hospitalRepository) {
+        this.hospitalRepository = hospitalRepository;
+    }
 
     private Logger logger = LoggerFactory.getLogger(HospitalService.class);
 

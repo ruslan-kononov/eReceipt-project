@@ -11,6 +11,7 @@
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/product/">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/doctor.css" />">
 </head>
 <body>
@@ -35,34 +36,38 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col-auto d-none d-md-block">
-                    <img src="<c:url value="pharma/getPhoto/${pharma.photoId}" />" alt="" class="img-fluid"
-                         style="max-height: 450px">
-                </div>
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">
-                        <h4><spring:message code="pharma-name"/></h4>
-                    </strong>
-                    <h3 class="mb-0">${pharma.firstName} ${pharma.lastName}</h3>
-                    <div class="mb-3 text-muted">${pharma.email}</div>
+            <div data-aos="fade-down">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-auto d-none d-md-block">
+                        <img src="<c:url value="pharma/getPhoto/${pharma.photoId}" />" alt="" class="img-fluid"
+                             style="max-height: 450px">
+                    </div>
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary">
+                            <h4><spring:message code="pharma-name"/></h4>
+                        </strong>
+                        <h3 class="mb-0">${pharma.firstName} ${pharma.lastName}</h3>
+                        <div class="mb-3 text-muted">${pharma.email}</div>
+                    </div>
                 </div>
             </div>
 
-            <h3 id="add-prescription"><spring:message code="pharma-check"/></h3>
-            <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 p-3 shadow-sm h-md-250 position-relative form-style">
-                <form class="prescription-form">
-                    <div class="form-row">
-                        <div class="col-6 mb-3">
-                            <label><spring:message code="pharma-enter-code"/></label>
-                            <input type="text" class="form-control prescrCode" value="" placeholder="<spring:message code="pharma-enter-code"/>">
-                            <div class="invalid-feedback"><spring:message code="pharma-code-warn1"/></div>
-                            <div class="invalid-feedback"><spring:message code="pharma-code-warn2"/></div>
+            <div data-aos="fade-down">
+                <h3 id="add-prescription"><spring:message code="pharma-check"/></h3>
+                <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 p-3 shadow-sm h-md-250 position-relative form-style">
+                    <form class="prescription-form">
+                        <div class="form-row">
+                            <div class="col-6 mb-3">
+                                <label><spring:message code="pharma-enter-code"/></label>
+                                <input type="text" class="form-control prescrCode" value="" placeholder="<spring:message code="pharma-enter-code"/>">
+                                <div class="invalid-feedback"><spring:message code="pharma-code-warn1"/></div>
+                                <div class="invalid-feedback"><spring:message code="pharma-code-warn2"/></div>
+                            </div>
                         </div>
+                        <button class="btn btn-outline-primary btn-form btn-check-prescription" type="button"><spring:message code="pharma-btn-check"/></button>
+                    </form>
+                    <div class="table-prescription">
                     </div>
-                    <button class="btn btn-outline-primary btn-form btn-check-prescription" type="button"><spring:message code="pharma-btn-check"/></button>
-                </form>
-                <div class="table-prescription">
                 </div>
             </div>
         </div>
@@ -72,7 +77,9 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"/>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="<c:url value="/resources/js/pharma.js" />"></script>
 <script src="<c:url value="/resources/js/lang-change.js" />"></script>
+<script src="<c:url value="/resources/js/AOS.js" />"></script>
 </body>
 </html>
