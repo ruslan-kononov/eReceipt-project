@@ -123,7 +123,6 @@ public class Prescription{
         Prescription that = (Prescription) o;
         return Objects.equals(prescrId, that.prescrId) &&
                 Objects.equals(patient, that.patient) &&
-                Objects.equals(doctor, that.doctor) &&
                 Objects.equals(medicineName, that.medicineName) &&
                 Objects.equals(prescrText, that.prescrText) &&
                 Objects.equals(utilDate, that.utilDate) &&
@@ -133,6 +132,6 @@ public class Prescription{
 
     @Override
     public int hashCode() {
-        return Objects.hash(prescrId, patient, doctor, medicineName, prescrText, utilDate, isHanded, prescrCode);
+        return Objects.hash(prescrId, patient, medicineName, prescrText, utilDate, isHanded, prescrCode);
     }
 }
