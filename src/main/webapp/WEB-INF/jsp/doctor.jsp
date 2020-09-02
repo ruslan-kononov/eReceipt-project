@@ -54,7 +54,6 @@
                     </div>
                 </div>
             </div>
-            <div data-aos="fade-down">
                 <h3 id="add-prescription"><spring:message code="doc-make-precr"/></h3>
                 <div class="no-gutters border rounded overflow-hidden flex-md-row mb-4 p-3 shadow-sm h-md-250 position-relative form-style">
                     <form:form class="prescription-form" action="/doctor/addPrescription" modelAttribute="prescription" method="post">
@@ -116,7 +115,6 @@
                         </div>
                     </form:form>
                 </div>
-            </div>
         </div>
     </div>
 </div>
